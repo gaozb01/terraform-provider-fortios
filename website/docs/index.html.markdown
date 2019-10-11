@@ -3,17 +3,36 @@ layout: "fortios"
 page_title: "Provider: FortiOS"
 sidebar_current: "docs-fortios-index"
 description: |-
-  The FortiOS provider interacts with FortiGate.
+  The FortiOS provider interacts with FortiGate or FortiManager.
 ---
 
 # FortiOS Provider
 
-The FortiOS provider is used to interact with the resources supported by FortiOS. We need to configure the provider with with the proper credentials before it can be used.
+The FortiOS provider consists of two products: FortiGate and FortiManager, it can configure and manager them by the related resources.
 
-## Example Usage
+For the usage and details about the FortiGate and FortiManager resources, please refer to the related documents.
+
+## Argument Reference for FortiGate
+The following arguments are supported:
+
+* `hostname` - (Required) Hostname or IP address of FortiGate.
+* `token` - (Required) Token of FortiGate.
+* `insecure` - (Optional) Control if the provider performs insecure SSL request, default is `false`.
+* `cabundlefile` - (Optional) The path of a custom CA bundle file.
+* `vdom` - (Optional) Specify the vdom name if the FortiGate is running in VDOM mode.
+
+As the alternative choice, the following environment variables are also supported:
+
+* FORTIOS_ACCESS_HOSTNAME
+* FORTIOS_ACCESS_TOKEN
+* FORTIOS_INSECURE
+* FORTIOS_CA_CABUNDLE
+
+For `token` argument, please refer to the `system->system api-user` and `execute->api-user` chapters of the `FortiOS Handbook - CLI Reference` for more details.
+
+### Example Usage
 
 ```hcl
-# Configure the FortiOS Provider
 provider "fortios" {
 	hostname = "192.168.52.177"
 	token = "jn3t3Nw7qckQzt955Htkfj5hwQ6jdb"
@@ -29,7 +48,7 @@ resource "fortios_networking_route_static" "test1" {
 }
 ```
 
-If it is used for testing, you can set `insecure` to "true" and unset `cabundlefile` to quickly set the provider up, for example:
+Note that `insecure` could be set to `true` for a quick test, but is not recommended for a real usage.
 
 ```hcl
 provider "fortios" {
@@ -38,93 +57,46 @@ provider "fortios" {
 	insecure = "true"
 }
 ```
-Please refer to the Argument Reference below for more help on `insecure` and `cabundlefile`.
 
-## Authentication
-
-The FortiOS provider offers a means of providing credentials for authentication. The following methods are supported:
-
-- Static credentials
-- Environment variables
-
-### Static credentials
-Static credentials can be provided by adding a `token` key in-line in the FortiOS provider block.
-
-Usage:
-```hcl
-provider "fortios" {
-	hostname = "192.168.52.177"
-	token = "jn3t3Nw7qckQzt955Htkfj5hwQ6jdb"
-	insecure = "false"
-	cabundlefile = "/path/yourCA.crt"
-}
-```
-For the configuration of the token, please refer to the `system->system api-user` and `execute->api-user` chapters of the `FortiOS Handbook - CLI Reference`.
-
-### Environment variables
-You can provide your credentials via the `FORTIOS_ACCESS_HOSTNAME` and `FORTIOS_ACCESS_TOKEN` environment variables. Note that setting your FortiOS credentials using static credentials variables will override the environment variables.
-
-Usage:
-
-```hcl
-$ export FORTIOS_ACCESS_HOSTNAME=192.168.52.177
-$ export FORTIOS_ACCESS_TOKEN=q3Hs49jxts195gkd9Hjsxnjtmr6k39
-```
-
-Then configure the FortiOS Provider as following:
-
-```hcl
-provider "fortios" { }
-
-# Create a Static Route Item
-resource "fortios_networking_route_static" "test1" {
-	dst = "110.2.2.122/32"
-	gateway = "2.2.2.2"
-	blackhole = "disable"
-	distance = "22"
-	weight = "3"
-	# …
-}
-```
-## VDOM
-If the FortiGate unit is running in VDOM mode, the `vdom` configuration needs to be added.
-
-Usage:
-
-```hcl
-provider "fortios" {
-	hostname = "192.168.52.177"
-	token = "q3Hs49jxts195gkd9Hjsxnjtmr6k39"
-	insecure = "false"
-	cabundlefile = "/path/yourCA.crt"
-	vdom = "vdomtest"
-}
-
-resource "fortios_networking_route_static" "test1" {
-	dst = "120.2.2.122/32"
-	gateway = "2.2.2.2"
-	blackhole = "disable"
-	distance = "22"
-	weight = "3"
-	priority = "3"
-	device = "lbforvdomtest"
-	comment = "Terraform test"
-}
-```
-
-## Argument Reference
+## Argument Reference for FortiManager
 The following arguments are supported:
 
-* `hostname` - (Optional) This is the hostname or IP address of FortiOS unit. It must be provided, but it can also be sourced from the `FORTIOS_ACCESS_HOSTNAME` environment variable.
+* `hostname` - (Required) Hostname or IP address of FortiManager.
+* `username` - (Required) Admin username for remote API communication with FortiManager.
+* `passwd` - (Required) Password.
+* `product` - (Required) Which product to use, should be set to "fortimanager" here.
+* `insecure` - (Optional) Control if the provider performs insecure SSL request, default is `false`.
+* `cabundlefile` - (Optional) The path of a custom CA bundle file.
 
-* `token` - (Optional) This is the token of FortiOS unit. It must be provided, but it can also be sourced from the `FORTIOS_ACCESS_TOKEN` environment variable.
+As the alternative choice, the following environment variables are also supported:
 
-* `insecure` - (Optional) This is used to control whether the Provider to perform insecure SSL requests. If omitted, the `FORTIOS_INSECURE` environment variable is used. If neither is set, default value is `false`.
+* FORTIOS_FMG_HOSTNAME
+* FORTIOS_FMG_USERNAME
+* FORTIOS_FMG_PASSWORD
+* FORTIOS_PRODUCT
+* FORTIOS_FMG_INSECURE
+* FORTIOS_FMG_CABUNDLE
 
-* `cabundlefile` - (Optional) The path of a custom CA bundle file. You can specify a path to the file, or you can specify it by the `FORTIOS_CA_CABUNDLE` environment variable.
+### Example Usage
 
-* `vdom` - (Optional) If the FortiGate unit is running in VDOM mode, you can use this argument to specify the name of the vdom to be set .
+```hcl
+provider "fortios" {
+        hostname = "192.168.88.100"
+        username = "APIUser"
+        passwd = "admin"
+        product = "fortimanager"
+        insecure = false
+        cabundlefile = "/path/yourCA.crt"
+}
+
+resource "fortios_fortimanager_system_dns" "test1" {
+        primary = "208.91.112.52"
+        secondary = "208.91.112.54"
+}
+```
+
+Note that `insecure` could be set to `true` for a quick test, but is not recommended for a real usage.
 
 ## Versioning
 
-The provider can cover both FortiOS 6.0 and 6.2 versions.
+The provider can cover both v6.0 and v6.2 versions.
