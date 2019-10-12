@@ -6,6 +6,7 @@ import (
 	"github.com/fgtdev/fortimanager-sdk-go/util"
 )
 
+// JSONSysAdminUser contains the params for creating system admin user
 type JSONSysAdminUser struct {
 	UserId      string `json:"userid"`
 	Passwd      string `json:"password"`
@@ -18,7 +19,7 @@ type JSONSysAdminUser struct {
 	Trusthost3  string `json:"trusthost3"`
 }
 
-// Create and Update function
+// CreateUpdateSystemAdminUser is for creating or updating the system admin user
 func (c *FmgSDKClient) CreateUpdateSystemAdminUser(params *JSONSysAdminUser, method string) (err error) {
 	defer c.Trace("CreateUpdateSystemAdminUser")()
 
@@ -37,6 +38,7 @@ func (c *FmgSDKClient) CreateUpdateSystemAdminUser(params *JSONSysAdminUser, met
 	return
 }
 
+// ReadSystemAdminUser is for reading the specific system admin user
 func (c *FmgSDKClient) ReadSystemAdminUser(id string) (out *JSONSysAdminUser, err error) {
 	defer c.Trace("ReadSystemAdminUser")()
 
@@ -88,6 +90,7 @@ func (c *FmgSDKClient) ReadSystemAdminUser(id string) (out *JSONSysAdminUser, er
 	return
 }
 
+// DeleteSystemAdminUser is for deleting the specific system admin user
 func (c *FmgSDKClient) DeleteSystemAdminUser(id string) (err error) {
 	defer c.Trace("DeleteSystemAdminUser")()
 

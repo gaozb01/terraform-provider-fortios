@@ -7,6 +7,7 @@ import (
 	"github.com/fgtdev/fortimanager-sdk-go/util"
 )
 
+// JSONSystemAdom contains the params for creating system adom
 type JSONSystemAdom struct {
 	Name           string   `json:"name"`
 	RestrictedPrds string   `json:"restricted_prds"`
@@ -14,7 +15,7 @@ type JSONSystemAdom struct {
 	Flags          []string `json:"flags"`
 }
 
-// Create and Update function
+// CreateUpdateSystemAdom is for creating or updating the system adom
 func (c *FmgSDKClient) CreateUpdateSystemAdom(params *JSONSystemAdom, method string) (err error) {
 	defer c.Trace("CreateUpdateSystemAdom")()
 
@@ -33,6 +34,7 @@ func (c *FmgSDKClient) CreateUpdateSystemAdom(params *JSONSystemAdom, method str
 	return
 }
 
+// ReadSystemAdom is for reading the specific system adom
 func (c *FmgSDKClient) ReadSystemAdom(name string) (out *JSONSystemAdom, err error) {
 	defer c.Trace("ReadSystemAdom")()
 
@@ -67,6 +69,7 @@ func (c *FmgSDKClient) ReadSystemAdom(name string) (out *JSONSystemAdom, err err
 
 }
 
+// DeleteSystemAdom is for deleting the specific system adom
 func (c *FmgSDKClient) DeleteSystemAdom(name string) (err error) {
 	defer c.Trace("DeleteSystemAdom")()
 

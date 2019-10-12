@@ -7,6 +7,7 @@ import (
 	"github.com/fgtdev/fortimanager-sdk-go/util"
 )
 
+// JSONFirewallSecurityPolicy contains the params for creating firewall security policy
 type JSONFirewallSecurityPolicy struct {
 	Name                 string   `json:"name"`
 	Action               string   `json:"action"`
@@ -52,12 +53,13 @@ type JSONFirewallSecurityPolicy struct {
 	PerIpShaper          []string `json:"per-ip-shaper"`
 }
 
+// FirewallSecurityPolicyInput contains the policy and the related package info
 type FirewallSecurityPolicyInput struct {
 	Policy      *JSONFirewallSecurityPolicy
 	PackageName string
 }
 
-// Create and Update function
+// CreateUpdateFirewallSecurityPolicy is for creating/updating the firewall security policy
 func (c *FmgSDKClient) CreateUpdateFirewallSecurityPolicy(params *FirewallSecurityPolicyInput, method string) (id string, err error) {
 	defer c.Trace("CreateUpdateFirewallSecurityPolicy")()
 
@@ -89,6 +91,7 @@ func (c *FmgSDKClient) CreateUpdateFirewallSecurityPolicy(params *FirewallSecuri
 	return
 }
 
+// ReadFirewallSecurityPolicy is for reading the specific firewall security policy
 func (c *FmgSDKClient) ReadFirewallSecurityPolicy(id, pkg_name string) (out *JSONFirewallSecurityPolicy, err error) {
 	defer c.Trace("ReadFirewallSecurityPolicy")()
 
@@ -300,6 +303,7 @@ func (c *FmgSDKClient) ReadFirewallSecurityPolicy(id, pkg_name string) (out *JSO
 	return
 }
 
+// DeleteFirewallSecurityPolicy is for deleting the specific firewall security policy
 func (c *FmgSDKClient) DeleteFirewallSecurityPolicy(id, pkg_name string) (err error) {
 	defer c.Trace("DeleteFirewallSecurityPolicy")()
 

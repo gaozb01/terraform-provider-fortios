@@ -6,6 +6,7 @@ import (
 	"github.com/fgtdev/fortimanager-sdk-go/util"
 )
 
+// JSONSystemGlobal contains the params for updating system global setting
 type JSONSystemGlobal struct {
 	Hostname   string `json:"hostname,omitempty"`
 	FazStatus  string `json:"faz-status,omitempty"`
@@ -14,6 +15,7 @@ type JSONSystemGlobal struct {
 	TimeZone   string `json:"timezone,omitempty"`
 }
 
+// SetSystemGlobal is for updating the system global setting
 func (c *FmgSDKClient) SetSystemGlobal(params *JSONSystemGlobal) (err error) {
 	defer c.Trace("SetSystemGlobal")()
 
@@ -32,6 +34,7 @@ func (c *FmgSDKClient) SetSystemGlobal(params *JSONSystemGlobal) (err error) {
 	return
 }
 
+// ReadSystemGlobal is for reading the system global setting
 func (c *FmgSDKClient) ReadSystemGlobal() (out *JSONSystemGlobal, err error) {
 	defer c.Trace("ReadSystemGlobal")()
 

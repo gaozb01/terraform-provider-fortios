@@ -4,11 +4,13 @@ import (
 	"fmt"
 )
 
+// JSONFirewallSecurityPolicyPackage contains the params for creating firewall policy package
 type JSONFirewallSecurityPolicyPackage struct {
 	Name   string `json:"name"`
 	Target string `json:"name"`
 }
 
+// CreateUpdateFirewallSecurityPolicyPackage is for creating/updating the firewall security policy package
 func (c *FmgSDKClient) CreateUpdateFirewallSecurityPolicyPackage(params *JSONFirewallSecurityPolicyPackage, method string) (err error) {
 	defer c.Trace("CreateUpdateFirewallSecurityPolicyPackage")()
 
@@ -35,6 +37,7 @@ func (c *FmgSDKClient) CreateUpdateFirewallSecurityPolicyPackage(params *JSONFir
 	return
 }
 
+// DeleteFirewallSecurityPolicyPackage is for deleting the specific firewall security policy package
 func (c *FmgSDKClient) DeleteFirewallSecurityPolicyPackage(name string) (err error) {
 	defer c.Trace("DeleteFirewallSecurityPolicyPackage")()
 
@@ -51,6 +54,7 @@ func (c *FmgSDKClient) DeleteFirewallSecurityPolicyPackage(name string) (err err
 	return
 }
 
+// ReadFirewallSecurityPolicyPackage is for reading the specific firewall security policy package
 func (c *FmgSDKClient) ReadFirewallSecurityPolicyPackage(name string) (out *JSONFirewallSecurityPolicyPackage, err error) {
 	defer c.Trace("ReadFirewallSecurityPolicyPackage")()
 

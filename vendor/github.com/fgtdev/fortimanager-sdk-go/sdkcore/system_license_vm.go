@@ -4,11 +4,13 @@ import (
 	"fmt"
 )
 
+// JSONSystemLicenseVM contains the params for uploading vm license
 type JSONSystemLicenseVM struct {
 	Target      string
 	FileContent string
 }
 
+// AddSystemLicenseVM is for uploading vm license
 func (c *FmgSDKClient) AddSystemLicenseVM(params *JSONSystemLicenseVM) (err error) {
 	defer c.Trace("AddSystemLicenseVM")()
 

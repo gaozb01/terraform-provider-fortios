@@ -4,11 +4,13 @@ import (
 	"fmt"
 )
 
+// JSONDVMInstallDev contains the params for installing device
 type JSONDVMInstallDev struct {
 	Name    string `json:"name"`
 	Timeout int
 }
 
+// CreateDVMInstallDev is for installing scripts to the related device
 func (c *FmgSDKClient) CreateDVMInstallDev(params *JSONDVMInstallDev) (err error) {
 	defer c.Trace("CreateDVMInstallDev")()
 

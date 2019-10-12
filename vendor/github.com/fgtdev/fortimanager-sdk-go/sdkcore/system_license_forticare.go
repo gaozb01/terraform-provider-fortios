@@ -4,11 +4,13 @@ import (
 	"fmt"
 )
 
+// SystemLicenseFortiCare contains the params for uploading forticare license
 type SystemLicenseFortiCare struct {
 	Target           string
 	RegistrationCode string
 }
 
+// AddSystemLicenseFortiCare is for uploading forticare license
 func (c *FmgSDKClient) AddSystemLicenseFortiCare(params *SystemLicenseFortiCare) (err error) {
 	defer c.Trace("AddSystemLicenseFortiCare")()
 

@@ -6,6 +6,7 @@ import (
 	"github.com/fgtdev/fortimanager-sdk-go/util"
 )
 
+// JSONFirewallObjectService contains the params for creating firewall object service
 type JSONFirewallObjectService struct {
 	Name          string   `json:"name"`
 	Comment       string   `json:"comment"`
@@ -22,7 +23,7 @@ type JSONFirewallObjectService struct {
 	ProtocolNum   int      `json:"protocol-number"`
 }
 
-// Create and Update function
+// CreateUpdateFirewallObjectService is for creating/updating the firewall object service
 func (c *FmgSDKClient) CreateUpdateFirewallObjectService(params *JSONFirewallObjectService, method string) (err error) {
 	defer c.Trace("CreateUpdateFirewallObjectService")()
 
@@ -41,6 +42,7 @@ func (c *FmgSDKClient) CreateUpdateFirewallObjectService(params *JSONFirewallObj
 	return
 }
 
+// ReadFirewallObjectService is for reading the specific firewall object service
 func (c *FmgSDKClient) ReadFirewallObjectService(name string) (out *JSONFirewallObjectService, err error) {
 	defer c.Trace("ReadFirewallObjectService")()
 
@@ -106,6 +108,7 @@ func (c *FmgSDKClient) ReadFirewallObjectService(name string) (out *JSONFirewall
 	return
 }
 
+// DeleteFirewallObjectService is for deleting the specific firewall object service
 func (c *FmgSDKClient) DeleteFirewallObjectService(name string) (err error) {
 	defer c.Trace("DeleteFirewallObjectService")()
 

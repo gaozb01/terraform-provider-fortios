@@ -6,6 +6,7 @@ import (
 	"github.com/fgtdev/fortimanager-sdk-go/util"
 )
 
+// JSONSystemNTP contains the params for updating NTP setting
 type JSONSystemNTP struct {
 	Id           int    `json:"id"`
 	Server       string `json:"server"`
@@ -13,6 +14,7 @@ type JSONSystemNTP struct {
 	SyncInterval int    `json:"sync_interval,omitempty"`
 }
 
+// SetSystemNTP is for updating NTP setting
 func (c *FmgSDKClient) SetSystemNTP(params *JSONSystemNTP) (err error) {
 	defer c.Trace("SetSystemNTP")()
 
@@ -40,6 +42,7 @@ func (c *FmgSDKClient) SetSystemNTP(params *JSONSystemNTP) (err error) {
 	return
 }
 
+// ReadSystemNTP is for reading NTP setting
 func (c *FmgSDKClient) ReadSystemNTP() (out *JSONSystemNTP, err error) {
 	defer c.Trace("ReadSystemNTP")()
 

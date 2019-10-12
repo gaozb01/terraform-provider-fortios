@@ -4,6 +4,7 @@ import (
 	"fmt"
 )
 
+// JSONDVMDeviceCreate is for device create
 type JSONDVMDeviceCreate struct {
 	UserId   string `json:"adm_usr"`
 	Passwd   string `json:"adm_pass"`
@@ -12,11 +13,13 @@ type JSONDVMDeviceCreate struct {
 	MgmtMode string `json:"mgmt_mode"`
 }
 
+// JSONDVMDeviceDel is for device delete
 type JSONDVMDeviceDel struct {
 	Name string `json:"device"`
 	Adom string `json:"adom"`
 }
 
+// CreateDVMDevice add device to devicemanager
 func (c *FmgSDKClient) CreateDVMDevice(params *JSONDVMDeviceCreate) (err error) {
 	defer c.Trace("CreateDVMDevice")()
 
@@ -39,6 +42,7 @@ func (c *FmgSDKClient) CreateDVMDevice(params *JSONDVMDeviceCreate) (err error) 
 	return
 }
 
+// DeleteDVMDevice del device from devicemanager
 func (c *FmgSDKClient) DeleteDVMDevice(params *JSONDVMDeviceDel) (err error) {
 	defer c.Trace("DeleteDVMDevice")()
 

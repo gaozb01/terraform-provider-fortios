@@ -4,11 +4,13 @@ import (
 	"fmt"
 )
 
+// JSONDVMInstallPolicyPackage contains params for installing policy package
 type JSONDVMInstallPolicyPackage struct {
 	Name    string `json:"name"`
 	Timeout int
 }
 
+// CreateDVMInstallPolicyPackage is for installing policy package to the related device
 func (c *FmgSDKClient) CreateDVMInstallPolicyPackage(params *JSONDVMInstallPolicyPackage) (err error) {
 	defer c.Trace("CreateDVMInstallPolicyPackage")()
 

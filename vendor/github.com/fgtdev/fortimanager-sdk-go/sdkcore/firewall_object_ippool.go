@@ -6,6 +6,7 @@ import (
 	"github.com/fgtdev/fortimanager-sdk-go/util"
 )
 
+// JSONFirewallObjectIppool contains the params for creating firewall object ippool
 type JSONFirewallObjectIppool struct {
 	Name           string `json:"name"`
 	Comment        string `json:"comments"`
@@ -17,7 +18,7 @@ type JSONFirewallObjectIppool struct {
 	EndIp          string `json:"endip"`
 }
 
-// Create and Update function
+// CreateUpdateFirewallObjectIppool is for creating/updating the firewall object ippool
 func (c *FmgSDKClient) CreateUpdateFirewallObjectIppool(params *JSONFirewallObjectIppool, method string) (err error) {
 	defer c.Trace("CreateUpdateFirewallObjectIppool")()
 
@@ -36,6 +37,7 @@ func (c *FmgSDKClient) CreateUpdateFirewallObjectIppool(params *JSONFirewallObje
 	return
 }
 
+// ReadFirewallObjectIppool is for reading the specific firewall object ippool
 func (c *FmgSDKClient) ReadFirewallObjectIppool(name string) (out *JSONFirewallObjectIppool, err error) {
 	defer c.Trace("ReadFirewallObjectIppool")()
 
@@ -89,6 +91,7 @@ func (c *FmgSDKClient) ReadFirewallObjectIppool(name string) (out *JSONFirewallO
 
 }
 
+// DeleteFirewallObjectIppool is for deleting the specific firewall object ippool
 func (c *FmgSDKClient) DeleteFirewallObjectIppool(name string) (err error) {
 	defer c.Trace("DeleteFirewallObjectIppool")()
 
